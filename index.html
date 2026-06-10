@@ -35,7 +35,6 @@
 
         #scanProgress { color: var(--cyan-accent); font-weight: 600; margin-bottom: 20px; font-size: 14px; }
 
-        /* 3-இன்-1 டெர்மினல் மாஸ்டர் கிரிட் லேஅவுட் நண்பா */
         .terminal-grid { display: grid; grid-template-columns: 1fr; gap: 25px; }
         @media (min-width: 1100px) { .terminal-grid { grid-template-columns: 1.1fr 0.9fr; } }
 
@@ -48,7 +47,6 @@
 
         .right-column { display: flex; flex-direction: column; gap: 25px; }
 
-        /* ரேஷியோ கிரிட் லேயர் */
         .ratio-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
         .ratio-box { background-color: #070d19; padding: 15px; border-radius: 8px; border: 1px solid rgba(30, 46, 74, 0.6); }
         .ratio-label { font-size: 11px; color: var(--text-muted); text-transform: uppercase; font-weight: bold; margin-bottom: 5px; }
@@ -56,12 +54,10 @@
 
         .alpha-box { background: linear-gradient(135deg, #091e14 0%, #070d19 100%); border: 1px solid rgba(16, 185, 129, 0.4); }
 
-        /* தீர்ப்பு பெட்டிகள் ஸ்டைல் */
         .verdict-box { background-color: #070d19; padding: 18px; border-radius: 8px; border-left: 4px solid var(--gold-star); margin-bottom: 15px; }
         .verdict-header { font-size: 13.5px; font-weight: 700; margin-bottom: 6px; }
         .verdict-desc { font-size: 13px; color: var(--text-main); line-height: 1.5; }
 
-        /* இன்ட்ராடே ஸ்பெஷல் கிரிட் (Power Bull Layout) */
         .intra-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 15px; }
         .intra-val-box { background-color: #070d19; padding: 12px; border-radius: 6px; text-align: center; border: 1px solid var(--border-color); }
         .intra-val-num { font-size: 16px; font-weight: 700; margin-top: 4px; }
@@ -85,7 +81,7 @@
 
     <div class="control-panel">
         <div class="search-box-container">
-            <input type="text" id="stockSearch" class="search-input" placeholder="🔍 பங்கைத் தேடுங்கள்... (எ.கா: QPOWER, TANLA, COCHINSHIP, WHEELSINDIA, SBIN, RELIANCE)">
+            <input type="text" id="stockSearch" class="search-input" placeholder="🔍 பங்கைத் தேடுங்கள்... (எ.கா: HEG, QPOWER, TANLA, COCHINSHIP, WHEELSINDIA)">
             <button class="scan-btn" onclick="run3In1Screener()">DEEP SCANN ASSET TERMINAL 🚀</button>
         </div>
     </div>
@@ -125,5 +121,4 @@
                 
                 <div class="intra-grid">
                     <div class="intra-val-box"><div class="ratio-label">Entry CMP</div><div class="intra-val-num" id="iEntry" style="color: var(--cyan-accent);">-</div></div>
-                    <div class="intra-val-box"><div class="ratio-label">Stop Loss (SL)</div><div class="intra-val-num" id="iSl" style="color: var(--red-alert);">-</div></div>
-                    <div class="intra-val-box"><div class="ratio-label">Decision Status</div>
+                    <div class="intra-val-box"><div class="ratio-label">Stop Loss (SL)</div><div class="intra-val-
