@@ -44,7 +44,7 @@
 
 <div class="container">
     <div class="header">
-        <h2>🎯 QUANTUM ALGO <span>INTELLIGENCE v5.0 (FINAL PRO MASTER)</span></h2>
+        <h2>🎯 QUANTUM ALGO <span>INTELLIGENCE v5.0 (FINAL MASTER)</span></h2>
         <p>தேர்ட்-பார்ட்டி ஏபிஐ மற்றும் பிராக்ஸி சிக்கல்கள் இன்றி 100% நிரந்தரமாக உழைக்கக்கூடிய அதிநவீன ஃபண்டமெண்டல் தளம்</p>
     </div>
 
@@ -61,7 +61,7 @@
             <label>Max Allowed Pledge (%)</label>
             <input type="number" id="maxPledge" value="15">
         </div>
-        <div class="filter-group">
+        <div class="filter-group =">
             <label>Max P/B Ratio</label>
             <input type="number" id="maxPB" value="4.0" step="0.5">
         </div>
@@ -114,16 +114,18 @@ async function runRedFlagScan() {
     const outputTable = document.getElementById("screenerOutput");
     const progressDiv = document.getElementById("scanProgress");
     
+    // பட்டனை அழுத்தும் போது பழைய டேட்டாவை முழுமையாகத் துடைத்து சுத்தமாக்குகிறது
     outputTable.innerHTML = "";
     progressDiv.innerText = "🚀 குவாண்டம் அல்கோ எஞ்சின் ஆன் செய்யப்படுகிறது. தீவிர ஜாதகச் சரிபார்ப்பு நடக்கிறது...";
 
-    // ஒரு சிறிய மில்லிசெகண்ட் தாமதம் (ரியல்-டைம் ஃபீல் தருவதற்காக நண்பா)
-    await new Promise(resolve => setTimeout(resolve, 600));
-
     for (let i = 0; i < marketStocks.length; i++) {
         const stockKey = marketStocks[i];
-        const data = stockDatabase[stockKey];
+        progressDiv.innerText = `🔄 தீவிர ஜாதகச் சரிபார்ப்பு: ${i+1}/${marketStocks.length} -> ${stockKey}`;
         
+        // ஒரு சிறிய 200ms தாமதம் (ரியல்-டைம் ஸ்கேனிங் ஃபீல் தருவதற்காக நண்பா)
+        await new Promise(resolve => setTimeout(resolve, 200));
+
+        const data = stockDatabase[stockKey];
         let opm = data.opm;
         let debtToEquity = data.debt;
         let priceToBook = data.pb;
