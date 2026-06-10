@@ -127,9 +127,11 @@ async function runRedFlagScan() {
         progressDiv.innerText = `🔄 தீவிர ஜாதகச் சரிபார்ப்பு: ${i+1}/${marketStocks.length} -> ${stock.replace(".NS", "")}`;
         
         try {
-            const url = `https://query1.finance.yahoo.com/v10/finance/quoteSummary/${stock}?modules=financialData,defaultKeyStatistics,cashflowStatementHistory`;
+            const targetUrl = `https://query1.finance.yahoo.com/v10/finance/quoteSummary/${stock}?modules=financialData,defaultKeyStatistics,cashflowStatementHistory`;
+const url = `https://api.allorigins.win/get?url=${encodeURIComponent(targetUrl)}`;
             const response = await fetch(url);
-            const json = await response.json();
+            const apiData = JSON.parse(json.contents);
+const result = apiData.quoteSummary.result[0];
             const result = json.quoteSummary.result[0];
             
             const opm = result.financialData.operatingMargins ? (result.financialData.operatingMargins.value * 100).toFixed(1) : 0;
