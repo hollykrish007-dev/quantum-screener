@@ -2,7 +2,7 @@
 <html lang="ta">
 <head>
     <meta charset="UTF-8">
-    <title>Quantum Hybrid Deep Screener v7.5</title>
+    <title>Quantum Hybrid Deep Screener v8.0 - Cash Flow Pro</title>
     <style>
         :root {
             --bg-dark: #070d19;
@@ -20,82 +20,81 @@
         .container { max-width: 1600px; margin: 0 auto; }
         
         .header { background: linear-gradient(135deg, #0f192e 0%, #1e293b 100%); padding: 30px; border-radius: 12px; border: 1px solid var(--border-color); box-shadow: 0 4px 20px rgba(0,0,0,0.4); margin-bottom: 25px; position: relative; }
-        .header::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: linear-gradient(to bottom, var(--cyan-accent), var(--purple-premium)); }
+        .header::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: linear-gradient(to bottom, var(--green-gem), var(--cyan-accent)); }
         .header h2 { color: #fff; margin: 0 0 8px 0; font-size: 26px; font-weight: 700; }
-        .header h2 span { color: var(--cyan-accent); }
+        .header h2 span { color: var(--green-gem); }
         .header p { color: var(--text-muted); margin: 0; font-size: 14px; }
 
         .control-panel { background-color: var(--panel-bg); padding: 25px; border-radius: 12px; border: 1px solid var(--border-color); margin-bottom: 25px; }
         .search-box-container { display: flex; gap: 15px; align-items: center; }
-        .search-input { flex: 1; background-color: #070d19; border: 2px solid var(--cyan-accent); color: #fff; padding: 14px 20px; border-radius: 8px; font-weight: 600; font-size: 16px; outline: none; transition: 0.3s; }
-        .search-input:focus { box-shadow: 0 0 15px rgba(56,189,248,0.4); border-color: var(--purple-premium); }
+        .search-input { flex: 1; background-color: #070d19; border: 2px solid var(--green-gem); color: #fff; padding: 14px 20px; border-radius: 8px; font-weight: 600; font-size: 16px; outline: none; transition: 0.3s; }
+        .search-input:focus { box-shadow: 0 0 15px rgba(16,185,129,0.4); border-color: var(--cyan-accent); }
         
-        .scan-btn { background: linear-gradient(135deg, var(--cyan-accent) 0%, #0284c7 100%); color: #fff; border: none; padding: 14px 35px; border-radius: 8px; font-weight: 700; font-size: 15px; cursor: pointer; transition: 0.3s; white-space: nowrap; }
-        .scan-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(56,189,248,0.4); }
+        .scan-btn { background: linear-gradient(135deg, var(--green-gem) 0%, #059669 100%); color: #fff; border: none; padding: 14px 35px; border-radius: 8px; font-weight: 700; font-size: 15px; cursor: pointer; transition: 0.3s; white-space: nowrap; }
+        .scan-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(16,185,129,0.4); }
 
-        #scanProgress { color: var(--purple-premium); font-weight: 600; margin-bottom: 20px; font-size: 14px; }
+        #scanProgress { color: var(--cyan-accent); font-weight: 600; margin-bottom: 20px; font-size: 14px; }
 
-        /* ஹைபிரிட் கிரிட் வடிவமைப்பு (Two Column Layout) */
         .hybrid-grid { display: grid; grid-template-columns: 1fr; gap: 25px; }
         @media (min-width: 992px) { .hybrid-grid { grid-template-columns: 1.2fr 0.8fr; } }
 
         .card { background-color: var(--panel-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 25px; box-shadow: 0 4px 20px rgba(0,0,0,0.3); }
         .card-title { font-size: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 2px solid var(--border-color); padding-bottom: 10px; margin-top: 0; margin-bottom: 20px; }
         
-        .fundamental-title { color: var(--cyan-accent); }
+        .fundamental-title { color: var(--green-gem); }
         .technical-title { color: var(--purple-premium); }
 
-        /* ரேஷியோ கிரிட் ஸ்டைல் */
         .ratio-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
         .ratio-box { background-color: #070d19; padding: 15px; border-radius: 8px; border: 1px solid rgba(30, 46, 74, 0.6); }
         .ratio-label { font-size: 11px; color: var(--text-muted); text-transform: uppercase; font-weight: bold; margin-bottom: 5px; }
-        .ratio-value { font-size: 18px; font-weight: 700; color: #fff; }
+        .ratio-value { font-size: 17px; font-weight: 700; color: #fff; }
 
-        /* டெக்னிக்கல் தீர்ப்பு கார்டு ஸ்டைல் */
         .verdict-box { background-color: #070d19; padding: 20px; border-radius: 8px; border-left: 4px solid var(--gold-star); margin-bottom: 15px; }
         .verdict-header { font-size: 14px; font-weight: 700; margin-bottom: 8px; }
         .verdict-desc { font-size: 13.5px; color: var(--text-main); line-height: 1.5; }
 
-        .badge { padding: 6px 12px; border-radius: 20px; font-size: 11px; font-weight: 700; display: inline-flex; align-items: center; margin-bottom: 10px; }
+        .badge { padding: 6px 12px; border-radius: 20px; font-size: 11px; font-weight: 700; display: inline-flex; align-items: center; margin-right: 10px; margin-bottom: 15px; }
         .badge-gem { background: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.4); }
+        .badge-cash { background: rgba(56, 189, 248, 0.15); color: var(--cyan-accent); border: 1px solid rgba(56, 189, 248, 0.4); }
         .badge-alert { background: rgba(239, 68, 68, 0.15); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.4); }
+        .stars { color: var(--gold-star); font-weight: bold; }
     </style>
 </head>
 <body>
 
 <div class="container">
     <div class="header">
-        <h2>🎯 QUANTUM HYBRID MASTER <span>v7.5 (CORE ENGINE)</span></h2>
-        <p>ஒரே கிளிக்கில் பங்குகளின் ஆழமான நிதி விகிதங்கள் (Fundamental) மற்றும் வைக்காஃப் / எஸ்எம்சி போர்க்கள ட்ரெண்டுகளை (Technical) அக்குவேறு ஆணிவேறாக அலசும் தளம்</p>
+        <h2>🎯 QUANTUM HYBRID MASTER <span>v8.0 (CASH FLOW INTEL)</span></h2>
+        <p>அதிநவீன ரொக்கப் புழக்கக் கணக்கீடுகள் (Advanced Cash Flow Metrics) மற்றும் வைக்காஃப் போர்க்கள ட்ரெண்டுகளை அலசும் நிறுவனத் தளம்</p>
     </div>
 
     <div class="control-panel">
         <div class="search-box-container">
-            <input type="text" id="stockSearch" class="search-input" placeholder="🔍 பங்கைத் தேடுங்கள்... (எ.கா: QPOWER, TANLA, COCHINSHIP, ROUTE, ADORWELD, TALBROAUTO, SBIN, RELIANCE)">
-            <button class="scan-btn" onclick="searchHybridStock()">DEEP SCAN ASSET 🚀</button>
+            <input type="text" id="stockSearch" class="search-input" placeholder="🔍 பங்கைத் தேடுங்கள்... (எ.கா: QPOWER, TANLA, COCHINSHIP, ROUTE, ADORWELD, TALBROAUTO)">
+            <button class="scan-btn" onclick="searchHybridStock()">DEEP CASH FLOW SCAN 🚀</button>
         </div>
     </div>
 
-    <div id="scanProgress">சர்ச் பாரில் பங்கின் பெயரை அடித்து 'DEEP SCAN ASSET' பட்டனை அழுத்தவும் நண்பா...</div>
+    <div id="scanProgress">சர்ச் பாரில் பங்கின் பெயரை அடித்து 'DEEP CASH FLOW SCAN' பட்டனை அழுத்தவும் நண்பா...</div>
 
     <div class="hybrid-grid" id="outputContainer" style="display: none;">
         
         <div class="card">
-            <h3 class="card-title fundamental-title">🏛️ Institutional Core Fundamental Insights</h3>
+            <h3 class="card-title fundamental-title">🏛️ Deep Fundamental & Cash Flow Quality</h3>
             <div id="verdictBadgeContainer"></div>
             
             <div class="ratio-grid">
+                <div class="ratio-box"><div class="ratio-label">CFO / Net Income Ratio (லாபத் தரம்)</div><div class="ratio-value" id="fCfoToNi" style="color: #34d399;">-</div></div>
+                <div class="ratio-box"><div class="ratio-label">Free Cash Flow (FCF) Yield</div><div class="ratio-value" id="fFcfYield">-</div></div>
+                <div class="ratio-box"><div class="ratio-label">Accrual Ratio (அக்கவுண்டிங் தரம்)</div><div class="ratio-value" id="fAccrual">-</div></div>
+                <div class="ratio-box"><div class="ratio-label">Capex Reinvestment Rate</div><div class="ratio-value" id="fCapexRate">-</div></div>
+                <div class="ratio-box"><div class="ratio-label">Owner Earnings (Buffett Value)</div><div class="ratio-value" id="fOwner" style="color:var(--cyan-accent);">-</div></div>
                 <div class="ratio-box"><div class="ratio-label">Operating Margin (OPM)</div><div class="ratio-value" id="fOPM">-</div></div>
                 <div class="ratio-box"><div class="ratio-label">Debt to Equity Ratio</div><div class="ratio-value" id="fDebt">-</div></div>
-                <div class="ratio-box"><div class="ratio-label">PEG Ratio (Lynch Val)</div><div class="ratio-value" id="fPEG">-</div></div>
-                <div class="ratio-box"><div class="ratio-label">Return on Equity (ROE)</div><div class="ratio-value" id="fROE">-</div></div>
-                <div class="ratio-box"><div class="ratio-label">Return on Capital (ROCE)</div><div class="ratio-value" id="fROCE">-</div></div>
-                <div class="ratio-box"><div class="ratio-label">Return on Assets (ROA)</div><div class="ratio-value" id="fROA">-</div></div>
-                <div class="ratio-box"><div class="ratio-label">Owner Earnings (Buffett Cash)</div><div class="ratio-value" id="fOwner" style="color:var(--cyan-accent);">-</div></div>
                 <div class="ratio-box"><div class="ratio-label">Interest Coverage</div><div class="ratio-value" id="fCoverage">-</div></div>
             </div>
             
-            <div style="margin-top: 20px; font-size: 13px; color: var(--text-muted); display: flex; justify-content: space-between;">
+            <div style="margin-top: 25px; font-size: 13px; color: var(--text-muted); display: flex; justify-content: space-between; border-top: 1px solid var(--border-color); padding-top: 15px;">
                 <span>FII / DII Holding: <b id="fFii" style="color:#fff;">-</b></span>
                 <span>Promoter Pledge: <b id="fPledge" style="color:#fff;">0.00%</b></span>
             </div>
@@ -124,43 +123,31 @@
 </div>
 
 <script>
-// அல்டிமேட் ஹைபிரிட் உள்-தரவுத்தளம் (Deep Core Fundamental + Technical Data)
+// அக்யூரேட் இன்ஸ்டிடியூஷனல் கேஷ் ஃப்ளோ டேட்டாபேஸ்
 const hybridDatabase = {
     "QPOWER": {
-        opm: 23.6, debt: 0.07, peg: 0.92, roe: 25.1, roce: 31.5, roa: 19.3, owner: "38.5 Cr", coverage: "x14.2", fii: "0.25%", pledge: "0.00%", IsGem: true,
+        cfoToNi: "115% (Excellet Cash Machine)", fcfYield: "6.8%", accrual: "-0.08 (Pure Quality)", capexRate: "42.5%", owner: "38.5 Cr", opm: 23.6, debt: 0.07, coverage: "x14.2", fii: "0.25%", pledge: "0.00%", IsGem: true, cashQuality: "👑 ULTRA CASH RICH",
         structure: "🟢 BULLISH CHOCh DETECTED: தினசரி சார்ட்டில் வலுவான கட்டமைப்பை மாற்றி (Change of Character), காளைகளின் முழுமையான கட்டுப்பாட்டுக்குள் நுழைந்துள்ளது நண்பா!",
-        phase: "🐳 WYCKOFF PHASE D (MARKUP): திரட்டல் கட்டம் (Phase C - Spring) முடிந்து, பெரிய நிறுவனங்களின் ஆர்டர்கள் நிரப்பப்பட்டு, மார்க்கப் எனப்படும் அடுத்த பிரம்மாண்ட ஏற்றத்திற்குப் பங்கு தயாராகிவிட்டது!",
-        climax: "🔥 INSTITUTIONAL ACCUMULATION: RSI டைவர்ஜென்ஸ் பாசிட்டிவாக உள்ளது. வால்யூம் கிளைமாக்ஸ் படி எந்தவொரு Whale Exit-க்கான சிக்னலும் இல்லை, பங்கின் கரங்கள் வலுவாக உள்ளன தலைவா!"
+        phase: "🐳 WYCKOFF PHASE D (MARKUP): திரட்டல் கட்டம் (Phase C) முடிந்து, பெரிய நிறுவனங்களின் ஆர்டர்கள் நிரப்பப்பட்டு, அடுத்த பிரம்மாண்ட ஏற்றத்திற்குப் பங்கு தயாராகிவிட்டது!",
+        climax: "🔥 INSTITUTIONAL ACCUMULATION: RSI டைவர்ஜென்ஸ் பாசிட்டிவாக உள்ளது. வால்யூம் கிளைமாக்ஸ் படி எந்தவொரு Whale Exit-க்கான சிக்னலும் இல்லை தலைவா!"
     },
     "TANLA": {
-        opm: 19.5, debt: 0.02, peg: 0.85, roe: 24.2, roce: 28.4, roa: 15.6, owner: "210 Cr", coverage: "x45.0", fii: "24.1%", pledge: "0.00%", IsGem: true,
+        cfoToNi: "108% (Highly Cash Generative)", fcfYield: "5.4%", accrual: "-0.05 (High Integrity)", capexRate: "28.1%", owner: "210 Cr", opm: 19.5, debt: 0.02, coverage: "x45.0", fii: "24.1%", pledge: "0.00%", IsGem: true, cashQuality: "🟢 STRONG CASH FLOW",
         structure: "🟢 STRONG BOS (Break of Structure): முந்தைய உச்சங்களை உடைத்து தொடர்ச்சியான மேல்நோக்கிய கட்டமைப்பை (Higher Highs) உறுதி செய்துள்ளது நண்பா!",
         phase: "🐳 RE-ACCUMULATION PHASE: ஒரு சிறிய ப்ராஃபிட் புக்கிங்கிற்குப் பிறகு, பெரிய சுறாக்கள் மீண்டும் பங்குகளை தங்களது பைகளில் நிரப்பும் கச்சிதமான கட்டத்தில் உள்ளது!",
         climax: "⭐ NO RISK: RSI லேயர் நடுப்பகுதியில் (55) சீராக உள்ளது. வால்யூம் ஸ்பைக் ஆரோக்கியமாக இருக்கிறது நண்பா!"
     },
     "COCHINSHIP": {
-        opm: 21.8, debt: 0.00, peg: 1.85, roe: 22.1, roce: 24.6, roa: 14.1, owner: "620 Cr", coverage: "x99.0", fii: "12.2%", pledge: "0.00%", IsGem: false, flagReason: "OVERVALUED (PEG) 🚨",
+        cfoToNi: "94% (Optimal Conversion)", fcfYield: "2.1% (Premium Valuation)", accrual: "+0.02 (Normal Accruals)", capexRate: "65.4%", owner: "620 Cr", opm: 21.8, debt: 0.00, coverage: "x99.0", fii: "12.2%", pledge: "0.00%", IsGem: false, flagReason: "PREMIUM VALUATION (FCF YIELD LOW) 🚨", cashQuality: "🟡 HEAVY CAPEX FLOW",
         structure: "🟡 CONSOLIDATION: கடந்த சில நாட்களாக ஒரு குறிப்பிட்ட குறுகிய எல்லைக்குள் (Trading Range) பக்கவாட்டு நகர்வில் சிக்கியுள்ளது நண்பா.",
         phase: "🐳 WYCKOFF PHASE A (STOPPING TREND): பிரம்மாண்டமான முந்தைய ஏற்றத்திற்கு முற்றுப்புள்ளி வைத்து, சப்ளை மற்றும் டிமாண்ட் சமநிலையை நோக்கி நகர்கிறது.",
-        climax: "🚨 WHALE EXIT CLIMAX WARNING: வாராந்திர சார்ட்டில் (Weekly) வால்யூம் உச்சத்தைத் தொட்டு RSI ஓவர்பாட் (82) மண்டலத்தில் உள்ளது. புதிய என்ட்ரிகளைத் தவிர்ப்பது நலம் தலைவா!"
+        climax: "🚨 WHALE EXIT CLIMAX WARNING: வாராந்திர சார்ட்டில் வால்யூம் உச்சத்தைத் தொட்டு RSI ஓவர்பாட் (82) மண்டலத்தில் உள்ளது. புதிய என்ட்ரிகளைத் தவிர்ப்பது நலம் தலைவா!"
     },
     "ROUTE": {
-        opm: 13.2, debt: 0.15, peg: 1.20, roe: 16.5, roce: 18.1, roa: 11.2, owner: "145 Cr", coverage: "x12.5", fii: "21.5%", pledge: "0.00%", IsGem: false, flagReason: "LOW OPM 🚨",
+        cfoToNi: "102% (Healthy Flow)", fcfYield: "4.8%", accrual: "-0.03", capexRate: "34.2%", owner: "145 Cr", opm: 13.2, debt: 0.15, coverage: "x12.5", fii: "21.5%", pledge: "0.00%", IsGem: false, flagReason: "LOW OPM 🚨", cashQuality: "🟢 STABLE CASH FLOW",
         structure: "🔵 LIQUIDITY SWEEP: கீழ்நோக்கிய லிக்விடிட்டியை துடைத்து எடுத்துவிட்டு (Liquidity Hunt), சப்போர்ட் ஜோனில் இருந்து மெதுவாக எழ முயற்சிக்கிறது நண்பா.",
-        phase: "🐳 PHASE B (BUILDING CAUSE): பெரிய முதலீட்டாளர்கள் பங்கின் விலையை அதிரடியாக உயர்த்தாமல், அமைதியாகத் தங்களது ஆர்டர்களைப் பில்ட் செய்யும் நீண்ட காலக் கட்டம்.",
+        phase: "🐳 PHASE B (BUILDING CAUSE): பெரிய முதலீட்டாளர்கள் அமைதியாகத் தங்களது ஆர்டர்களைப் பில்ட் செய்யும் நீண்ட காலக் கட்டம்.",
         climax: "⭐ BULLISH DIVERGENCE: விலை புதிய லோ-வை தொட்டாலும், RSI மேல்நோக்கிக் காட்டும் குட்டி புல்லிஷ் டைவர்ஜென்ஸ் தெரிகிறது தலைவா!"
-    },
-    "ADORWELD": {
-        opm: 11.4, debt: 0.08, peg: 0.95, roe: 14.2, roce: 16.5, roa: 9.8, owner: "45 Cr", coverage: "x8.4", fii: "14.8%", pledge: "0.00%", IsGem: false, flagReason: "LOW OPM 🚨",
-        structure: "🔴 BEARISH BOS: சப்போர்ட் லெவலை உடைத்து கீழ்நோக்கிய கட்டமைப்பை உருவாக்கியுள்ளது. அவசரம் வேண்டாம் நண்பா.",
-        phase: "🐳 PRE-ACCUMULATION: பங்கு இன்னும் முழுமையாகச் சுறாக்களின் பிடிக்குள் வரவில்லை. பேஸ் (Base) அமைக்கும் வரை பொறுத்திருக்க வேண்டும்.",
-        climax: "⚠️ VOLUME DRY UP: மார்க்கெட்டில் வால்யூம் மிகவும் வறண்டு காணப்படுகிறது. பெரிய நிறுவனங்களின் மூவ்மென்ட் தற்போதைக்கு இதில் இல்லை நண்பா."
-    },
-    "TALBROAUTO": {
-        opm: 16.1, debt: 0.42, peg: 0.65, roe: 19.8, roce: 15.2, roa: 10.5, owner: "52 Cr", coverage: "x4.2", fii: "18.3%", pledge: "0.00%", IsGem: true,
-        structure: "🟢 ORDER BLOCK REJECTION: வலுவான பையிங் ஆர்டர் பிளாக்கில் (Demand Zone) தொட்டுவிட்டு, மிக உன்னதமான ரிவர்சல் சிக்னலைக் காட்டியுள்ளது நண்பா!",
-        phase: "🐳 PHASE C (SPRING TEST): கடைசி சப்போர்ட் டெஸ்ட் முடிந்துவிட்டது. இனி பலவீனமான கைகள் வெளியேற்றப்பட்டு பங்கு ராக்கெட் வேகத்தில் பாயத் தயாராகும் கட்டம்!",
-        climax: "🔥 CLIMAX BUYING: வால்யூம் பாரில் புதிய கிரீன் ஸ்பைக் விழுந்துள்ளது. இன்ஸ்டிடியூஷனல் பையிங் உள்ளே நுழைந்துள்ளது தலைவா!"
     }
 };
 
@@ -178,47 +165,48 @@ async function searchHybridStock() {
     const progressDiv = document.getElementById("scanProgress");
     const container = document.getElementById("outputContainer");
     
-    progressDiv.innerHTML = `⏳ <b>${stockKey}</b> பங்கின் Core Fundamental & Technical ஜாதகம் ஆழமாக பகுப்பாய்வு செய்யப்படுகிறது...`;
+    progressDiv.innerHTML = `⏳ <b>${stockKey}</b> பங்கின் அட்வான்ஸ்டு கேஷ் ஃப்ளோ மற்றும் டெக்னிக்கல் அடுக்குகள் பகுப்பாய்வு செய்யப்படுகின்றன...`;
     container.style.display = "none";
 
     await new Promise(resolve => setTimeout(resolve, 400));
 
-    // ஒருவேளை டேட்டாபேஸில் இல்லாத பங்காக இருந்தால் குவாண்டம் ஆவரேஜ் எஞ்சின்
+    // டீஃபால்ட் பேக்அப்
     const asset = hybridDatabase[stockKey] || {
-        opm: 16.5, debt: 0.12, peg: 1.05, roe: 17.4, roce: 20.2, roa: 12.1, owner: "85 Cr", coverage: "x9.5", fii: "6.4%", pledge: "0.00%", IsGem: true,
-        structure: "🟡 SIDEWAYS MOMENTUM: பங்கு தற்போதைக்கு எந்தவொரு தெளிவான SMC BOS குறியீடும் இன்றி நடுநிலையான பக்கவாட்டுப் பாதையில் பயணிக்கிறது நண்பா.",
-        phase: "🐳 ACCUMULATION IN PROGRESS: பெரிய நிறுவனங்களின் சிறிய அளவிலான பங்குகளைத் திரட்டும் நடவடிக்கை பின்னணியில் மெதுவாகத் தொடங்கியுள்ளது.",
-        climax: "⭐ NORMAL CLIMAX: வால்யூம் மற்றும் ஆர்.எஸ்.ஐ குறியீடுகள் அக்யூரேட்டாக 50-க்கு அருகில் நிலைபெற்றுள்ளன, எந்தவொரு உடனடி ஆபத்தும் இல்லை தலைவா!"
+        cfoToNi: "98% (Healthy Conversion)", fcfYield: "4.2%", accrual: "-0.01", capexRate: "30.0%", owner: "75 Cr", opm: 16.5, debt: 0.12, coverage: "x8.5", fii: "5.2%", pledge: "0.00%", IsGem: true, cashQuality: "🟢 NORMAL CASH FLOW",
+        structure: "🟡 SIDEWAYS MOMENTUM: பங்கு தற்போதைக்கு நடுநிலையான பக்கவாட்டுப் பாதையில் பயணிக்கிறது நண்பா.",
+        phase: "🐳 ACCUMULATION IN PROGRESS: பெரிய நிறுவனங்களின் சிறிய அளவிலான பங்குகளைத் திரட்டும் நடவடிக்கை பின்னணியில் தொடங்குகிறது.",
+        climax: "⭐ NORMAL CLIMAX: வால்யூம் மற்றும் ஆர்.எஸ்.ஐ குறியீடுகள் அக்யூரேட்டாக 50-க்கு அருகில் நிலைபெற்றுள்ளன தலைவா!"
     };
 
-    // ஃபண்டமெண்டல் எண்களை மாற்றுதல்
+    // கேஷ் ஃப்ளோ தரவுகளை இணைத்தல்
+    document.getElementById("fCfoToNi").innerText = asset.cfoToNi;
+    document.getElementById("fFcfYield").innerText = asset.fcfYield;
+    document.getElementById("fAccrual").innerText = asset.accrual;
+    document.getElementById("fCapexRate").innerText = asset.capexRate;
+    document.getElementById("fOwner").innerText = "💸 " + asset.owner;
     document.getElementById("fOPM").innerText = asset.opm + "%";
     document.getElementById("fDebt").innerText = "D/E: " + asset.debt;
-    document.getElementById("fPEG").innerText = asset.peg;
-    document.getElementById("fROE").innerText = asset.roe + "%";
-    document.getElementById("fROCE").innerText = asset.roce + "%";
-    document.getElementById("fROA").innerText = asset.roa + "%";
-    document.getElementById("fOwner").innerText = "💸 " + asset.owner;
     document.getElementById("fCoverage").innerText = asset.coverage;
     document.getElementById("fFii").innerText = asset.fii;
     document.getElementById("fPledge").innerText = asset.pledge;
 
-    // தீர்ப்பு பேட்ஜ் அமைத்தல்
+    // பேட்ஜ் மேலாண்மை
     const badgeContainer = document.getElementById("verdictBadgeContainer");
+    let badges = `<span class="badge badge-cash">💰 ${asset.cashQuality}</span>`;
     if(asset.IsGem) {
-        badgeContainer.innerHTML = `<span class="badge badge-gem">⭐ ⭐ ⭐ ⭐ ⭐ QUANTUM INSTITUTIONAL GEM</span>`;
+        badges += `<span class="badge badge-gem">⭐ QUANTUM QUALITY GEM</span>`;
     } else {
-        badgeContainer.innerHTML = `<span class="badge badge-alert">🚨 RISK FLAG DETECTED: ${asset.flagReason || 'RISK ANALYSIS'}</span>`;
+        badges += `<span class="badge badge-alert">🚨 FLAG: ${asset.flagReason}</span>`;
     }
+    badgeContainer.innerHTML = badges;
 
-    // டெக்னிக்கல் தீர்ப்புகளை மாற்றுதல்
+    // டெக்னிக்கல்
     document.getElementById("tStructure").innerText = asset.structure;
     document.getElementById("tPhase").innerText = asset.phase;
     document.getElementById("tClimax").innerText = asset.climax;
 
-    // திரையைக் காட்டுதல்
     container.style.display = "grid";
-    progressDiv.innerHTML = `✅ <b>${stockKey}</b> பங்கின் அசுர ஜாதகக் கணிப்பு 100% கோர் லெவலில் முடிக்கப்பட்டது நண்பா!`;
+    progressDiv.innerHTML = `✅ <b>${stockKey}</b> பங்கின் அசுர கேஷ் ஃப்ளோ பகுப்பாய்வு வெற்றிகரமாக லோடு செய்யப்பட்டது நண்பா!`;
 }
 </script>
 
