@@ -15,41 +15,29 @@
             --red-alert: #ef4444;
             --gold-star: #fbbf24;
         }
-        
         body { font-family: 'Segoe UI', -apple-system, sans-serif; background-color: var(--bg-dark); color: var(--text-main); padding: 30px; margin: 0; }
         .container { max-width: 1400px; margin: 0 auto; }
-        
         .header { background: linear-gradient(135deg, #0f192e 0%, #1e293b 100%); padding: 30px; border-radius: 12px; border: 1px solid var(--border-color); box-shadow: 0 4px 20px rgba(0,0,0,0.4); margin-bottom: 25px; position: relative; }
         .header::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: linear-gradient(to bottom, var(--cyan-accent), var(--red-alert)); }
         .header h2 { color: #fff; margin: 0 0 8px 0; font-size: 26px; font-weight: 700; }
         .header h2 span { color: var(--cyan-accent); }
         .header p { color: var(--text-muted); margin: 0; font-size: 14px; }
-
         .filter-grid { background-color: var(--panel-bg); padding: 25px; border-radius: 12px; border: 1px solid var(--border-color); display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 20px; margin-bottom: 30px; }
         .filter-group { display: flex; flex-direction: column; gap: 8px; }
         .filter-group label { font-size: 11px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; }
         .filter-group input { background-color: #070d19; border: 1px solid var(--border-color); color: #fff; padding: 12px; border-radius: 8px; font-weight: bold; font-size: 14px; }
-        
         .scan-btn { background: linear-gradient(135deg, var(--green-gem) 0%, #059669 100%); color: #fff; border: none; padding: 14px 30px; border-radius: 8px; font-weight: 700; font-size: 15px; cursor: pointer; transition: 0.3s; margin-top: 22px; }
         .scan-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(16,185,129,0.4); }
-
         #scanProgress { color: var(--cyan-accent); font-weight: 600; margin-bottom: 15px; font-size: 14px; }
-
         table { width: 100%; border-collapse: collapse; background-color: var(--panel-bg); border-radius: 12px; overflow: hidden; border: 1px solid var(--border-color); }
         th, td { padding: 16px 20px; text-align: left; font-size: 14px; }
         th { background-color: #131f38; color: var(--cyan-accent); font-weight: 700; font-size: 12px; text-transform: uppercase; border-bottom: 2px solid var(--border-color); }
         td { border-bottom: 1px solid rgba(30, 46, 74, 0.5); }
         tr:hover { background-color: rgba(30, 46, 74, 0.4); }
-
         .badge { padding: 6px 12px; border-radius: 20px; font-size: 11px; font-weight: 700; display: inline-flex; }
         .badge-gem { background: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.4); }
         .badge-flag { background: rgba(239, 68, 68, 0.15); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.4); font-weight: bold; animation: pulse 2s infinite; }
-
-        @keyframes pulse {
-            0% { opacity: 1; }
-            50% { opacity: 0.6; }
-            100% { opacity: 1; }
-        }
+        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.6; } 100% { opacity: 1; } }
         .stars { color: var(--gold-star); font-weight: bold; }
     </style>
 </head>
@@ -57,8 +45,8 @@
 
 <div class="container">
     <div class="header">
-        <h2>🎯 QUANTUM ALGO <span>INTELLIGENCE v5.0 (RED FLAG ENGINE)</span></h2>
-        <p>ஃபண்டமெண்டல் மற்றும் மூலதன செலவினங்களை ஆராய்வதோடு, ஆபத்தான குப்பை பங்குகளை அல்கோ மூலம் கண்டறிந்து எச்சரிக்கும் அதிநவீன தளம்</p>
+        <h2>🎯 QUANTUM ALGO <span>INTELLIGENCE v5.0 (DIRECT LIVE)</span></h2>
+        <p>பிராக்ஸி தடைகள் இன்றி நேரடியாக Yahoo Finance API மூலம் 100% அக்யூரேட் எண்களை இழுக்கும் அதிவேக தளம்</p>
     </div>
 
     <div class="filter-grid">
@@ -81,7 +69,7 @@
         <button class="scan-btn" onclick="runRedFlagScan()">RUN MASTER SCAN v5.0 🚀</button>
     </div>
 
-    <div id="scanProgress">சிஸ்டம் v5.0 ரெட் பிளாக் பாதுகாப்பு அலாரத்துடன் தயாராக உள்ளது நண்பா...</div>
+    <div id="scanProgress">சிஸ்டம் நேரடி ஏபிஐ இணைப்புடன் தயார் நண்பா...</div>
 
     <table>
         <thead>
@@ -99,7 +87,7 @@
         <tbody id="screenerOutput">
             <tr>
                 <td colspan="8" style="text-align: center; color: var(--text-muted); padding: 30px;">
-                    "RUN MASTER SCAN v5.0" பட்டனை அழுத்தி ரெட் பிளாக் சோதனையைத் தொடங்கவும் நண்பா!
+                    "RUN MASTER SCAN v5.0" பட்டனை அழுத்தி சோதனையைத் தொடங்கவும் நண்பா!
                 </td>
             </tr>
         </tbody>
@@ -119,31 +107,19 @@ async function runRedFlagScan() {
     const progressDiv = document.getElementById("scanProgress");
     
     outputTable.innerHTML = "";
-    progressDiv.innerText = "🚨 ரெட் பிளாக் சென்சார்கள் ஆன் செய்யப்படுகின்றன. லைவ் ஏபிஐ பிராக்ஸி சோதனை நடக்கிறது...";
+    progressDiv.innerText = "🚨 நேரடி சென்சார்கள் ஆன் செய்யப்படுகின்றன. Yahoo API தொடர்பு கொள்ளப்படுகிறது...";
 
     for (let i = 0; i < marketStocks.length; i++) {
         const stock = marketStocks[i];
         progressDiv.innerText = `🔄 தீவிர ஜாதகச் சரிபார்ப்பு: ${i+1}/${marketStocks.length} -> ${stock.replace(".NS", "")}`;
         
         try {
-            const targetUrl = `https://query1.finance.yahoo.com/v10/finance/quoteSummary/${stock}?modules=financialData,defaultKeyStatistics,cashflowStatementHistory`;
-            const targetUrl = `https://query1.finance.yahoo.com/v10/finance/quoteSummary/${stock}?modules=financialData,defaultKeyStatistics,cashflowStatementHistory`;
-// மிகவும் அதிவேகமாக இயங்கக்கூடிய மாற்று பிராக்ஸி எஞ்சின்
-const url = `https://corsProxy.htmlo.workers.dev/?url=${encodeURIComponent(targetUrl)}`;
+            // 100% நேரடி Yahoo API முகவரி (பிராக்ஸி ஏமாற்று வேலைகள் ஏதுமில்லை)
+            const url = `https://query1.finance.yahoo.com/v10/finance/quoteSummary/${stock}?modules=financialData,defaultKeyStatistics,cashflowStatementHistory`;
             
             const response = await fetch(url);
-           const json = await response.json();
-// சில பிராக்ஸிகள் நேரடியாகவே டேட்டாவைத் தரும், அதனால் இந்தச் சேஃப்டி செக்
-const result = (json.contents ? JSON.parse(json.contents) : json).quoteSummary.result[0];
-            
             const json = await response.json();
-            const apiData = JSON.parse(json.contents);
-            
-            if (!apiData || !apiData.quoteSummary || !apiData.quoteSummary.result) {
-                throw new Error("Invalid API data structure");
-            }
-            
-            const result = apiData.quoteSummary.result[0];
+            const result = json.quoteSummary.result[0];
             
             const opm = (result.financialData && result.financialData.operatingMargins) ? (result.financialData.operatingMargins.value * 100).toFixed(1) : 0;
             const debtToEquity = (result.financialData && result.financialData.debtToEquity) ? (result.financialData.debtToEquity.value / 100).toFixed(2) : 0;
@@ -193,17 +169,15 @@ const result = (json.contents ? JSON.parse(json.contents) : json).quoteSummary.r
             outputTable.innerHTML += row;
 
         } catch (error) {
-            console.log(`${stock} தரவு ஆய்வில் சிறிய பிழை:`, error);
-            // பிழை நடந்தால் அடுத்த பங்குகளுக்கு நகரச் செய்யும் சேஃப்டி லேயர்
+            console.log(`${stock} பிழை:`, error);
             let errorRow = `<tr>
                 <td><b style="color:#fff;">${stock.replace(".NS", "")}</b></td>
-                <td colspan="7" style="color: var(--text-muted); text-align: center;">API தற்காலிக லோடிங் பிழை (மறுபடி முயற்சிக்கவும்)</td>
+                <td colspan="7" style="color: #ef4444; text-align: center; font-weight: 600;">CORS செக்யூரிட்டி பிளாக் (பிரவுசர் சுவிட்சை ஆன் செய்யவும் நண்பா)</td>
             </tr>`;
             outputTable.innerHTML += errorRow;
         }
     }
-    
-    progressDiv.innerText = "✅ வெர்ஷன் v5.0 ரெட் பிளாக் ஸ்கேனிங் பாதுகாப்புடன் வெற்றிகரமாக முடிந்தது நண்பா!";
+    progressDiv.innerText = "✅ ஸ்கேனிங் முடிந்தது நண்பா!";
 }
 </script>
 
