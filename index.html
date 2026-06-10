@@ -132,7 +132,7 @@ async function runRedFlagScan() {
             
             const response = await fetch(url);
             const json = await response.json();
-            const apiData = JSON.parse(json.contents);
+            const apiData = JSON.parse(json.content);
             const result = apiData.quoteSummary.result[0];
             
             const opm = result.financialData.operatingMargins ? (result.financialData.operatingMargins.value * 100).toFixed(1) : 0;
