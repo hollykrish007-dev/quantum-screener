@@ -127,10 +127,14 @@ async function runRedFlagScan() {
         
         try {
             const targetUrl = `https://query1.finance.yahoo.com/v10/finance/quoteSummary/${stock}?modules=financialData,defaultKeyStatistics,cashflowStatementHistory`;
-            const url = `https://api.allorigins.win/get?url=${encodeURIComponent(targetUrl)}`;
+            const targetUrl = `https://query1.finance.yahoo.com/v10/finance/quoteSummary/${stock}?modules=financialData,defaultKeyStatistics,cashflowStatementHistory`;
+// மிகவும் அதிவேகமாக இயங்கக்கூடிய மாற்று பிராக்ஸி எஞ்சின்
+const url = `https://corsProxy.htmlo.workers.dev/?url=${encodeURIComponent(targetUrl)}`;
             
             const response = await fetch(url);
-            if (!response.ok) throw new Error("Network response error");
+           const json = await response.json();
+// சில பிராக்ஸிகள் நேரடியாகவே டேட்டாவைத் தரும், அதனால் இந்தச் சேஃப்டி செக்
+const result = (json.contents ? JSON.parse(json.contents) : json).quoteSummary.result[0];
             
             const json = await response.json();
             const apiData = JSON.parse(json.contents);
