@@ -126,21 +126,27 @@ async function runRedFlagScan() {
         progressDiv.innerText = `🔄 தீவிர ஜாதகச் சரிபார்ப்பு: ${i+1}/${marketStocks.length} -> ${stock.replace(".NS", "")}`;
         
         try {
-            // Bulletproof Proxy Engine to bypass Yahoo Finance Blocks
             const targetUrl = `https://query1.finance.yahoo.com/v10/finance/quoteSummary/${stock}?modules=financialData,defaultKeyStatistics,cashflowStatementHistory`;
             const url = `https://api.allorigins.win/get?url=${encodeURIComponent(targetUrl)}`;
             
             const response = await fetch(url);
+            if (!response.ok) throw new Error("Network response error");
+            
             const json = await response.json();
-            const apiData = JSON.parse(json.content);
+            const apiData = JSON.parse(json.contents);
+            
+            if (!apiData || !apiData.quoteSummary || !apiData.quoteSummary.result) {
+                throw new Error("Invalid API data structure");
+            }
+            
             const result = apiData.quoteSummary.result[0];
             
-            const opm = result.financialData.operatingMargins ? (result.financialData.operatingMargins.value * 100).toFixed(1) : 0;
-            const debtToEquity = result.financialData.debtToEquity ? (result.financialData.debtToEquity.value / 100).toFixed(2) : 0;
-            const instHolding = result.defaultKeyStatistics.heldPercentInstitutions ? (result.defaultKeyStatistics.heldPercentInstitutions.value * 100).toFixed(1) : 0;
-            const priceToBook = result.defaultKeyStatistics.priceToBook ? result.defaultKeyStatistics.priceToBook.value.toFixed(2) : "N/A";
+            const opm = (result.financialData && result.financialData.operatingMargins) ? (result.financialData.operatingMargins.value * 100).toFixed(1) : 0;
+            const debtToEquity = (result.financialData && result.financialData.debtToEquity) ? (result.financialData.debtToEquity.value / 100).toFixed(2) : 0;
+            const instHolding = (result.defaultKeyStatistics && result.defaultKeyStatistics.heldPercentInstitutions) ? (result.defaultKeyStatistics.heldPercentInstitutions.value * 100).toFixed(1) : 0;
+            const priceToBook = (result.defaultKeyStatistics && result.defaultKeyStatistics.priceToBook) ? result.defaultKeyStatistics.priceToBook.value.toFixed(2) : "N/A";
             
-            const sharesPledged = result.defaultKeyStatistics.sharesShortByMonth ? 12.5 : 0; 
+            const sharesPledged = (result.defaultKeyStatistics && result.defaultKeyStatistics.sharesShortByMonth) ? 12.5 : 0; 
 
             let capexSpent = "N/A";
             if(result.cashflowStatementHistory && result.cashflowStatementHistory.cashflowStatements) {
@@ -154,12 +160,12 @@ async function runRedFlagScan() {
             let redReason = "";
 
             if (sharesPledged > maxPledge) { isRedFlag = true; redReason = "HIGH PLEDGE 🚨"; }
-            if (opm < minOPM) { isRedFlag = true; redReason = "LOW OPM 🚨"; }
-            if (debtToEquity > maxDebt) { isRedFlag = true; redReason = "HIGH DEBT 🚨"; }
+            if (parseFloat(opm) < minOPM) { isRedFlag = true; redReason = "LOW OPM 🚨"; }
+            if (parseFloat(debtToEquity) > maxDebt) { isRedFlag = true; redReason = "HIGH DEBT 🚨"; }
 
             let starCount = 1;
-            if (opm >= minOPM) starCount++;
-            if (debtToEquity <= maxDebt) starCount++;
+            if (parseFloat(opm) >= minOPM) starCount++;
+            if (parseFloat(debtToEquity) <= maxDebt) starCount++;
             if (priceToBook !== "N/A" && parseFloat(priceToBook) <= maxPB) starCount++;
             if (capexSpent !== "N/A") starCount++;
             let starString = "⭐".repeat(starCount);
@@ -172,8 +178,8 @@ async function runRedFlagScan() {
 
             let row = `<tr>
                 <td><b style="color:#fff;">${stock.replace(".NS", "")}</b></td>
-                <td style="color: ${opm >= minOPM ? '#4ade80' : '#ef4444'}; font-weight: bold;">${opm}%</td>
-                <td style="color: ${debtToEquity <= maxDebt ? '#e2e8f0' : '#ef4444'};">D/E: ${debtToEquity}</td>
+                <td style="color: ${parseFloat(opm) >= minOPM ? '#4ade80' : '#ef4444'}; font-weight: bold;">${opm}%</td>
+                <td style="color: ${parseFloat(debtToEquity) <= maxDebt ? '#e2e8f0' : '#ef4444'};">D/E: ${debtToEquity}</td>
                 <td style="color: #fbbf24;">${priceToBook}x</td>
                 <td style="color: #38bdf8; font-weight: bold;">${instHolding}%</td>
                 <td>🏗️ ${capexSpent}</td>
@@ -183,7 +189,13 @@ async function runRedFlagScan() {
             outputTable.innerHTML += row;
 
         } catch (error) {
-            console.log(`${stock} தரவு ஆய்வில் சிறிய பிழை.`);
+            console.log(`${stock} தரவு ஆய்வில் சிறிய பிழை:`, error);
+            // பிழை நடந்தால் அடுத்த பங்குகளுக்கு நகரச் செய்யும் சேஃப்டி லேயர்
+            let errorRow = `<tr>
+                <td><b style="color:#fff;">${stock.replace(".NS", "")}</b></td>
+                <td colspan="7" style="color: var(--text-muted); text-align: center;">API தற்காலிக லோடிங் பிழை (மறுபடி முயற்சிக்கவும்)</td>
+            </tr>`;
+            outputTable.innerHTML += errorRow;
         }
     }
     
